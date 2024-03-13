@@ -22,7 +22,7 @@ const CardContainer = styled.div`
 const NameField = styled.div`
     font-weight:700;
     margin-bottom:24px;
-    color:#262c40;
+    color:var(--dark-text-color);
     vertical-align:text-top;
     font-size:24px;
     line-height:30px;
@@ -46,26 +46,20 @@ const AdressField = styled.div`
 `;
 
 const AdressText = styled.div`
-    color:#8189a2;
+    color:var(--pale-text-color);
     text-align:center;
     vertical-align: middle;
     font-size:14px;
-    line-height:30px;
-    border-style:hidden;
-    outline:none;
+    line-height:24px;
     width:max-content;
     display:inline-block;
-    margin-left:12px;
 `;
 
 const IconHolder = styled.div`
     display:flex;
-    align-content: center;
-    justify-content: center;    
-    width:30px;
-    height:30px;
-    border-style:hidden;
-    outline:none;
+    min-width:30px;
+    min-height:30px;
+    margin-right:12px;
 `
 
 const IconPhone = styled.img`
@@ -81,17 +75,27 @@ const IconEmail = styled.img`
 const StaffCard: React.FC<CardProps> = ({ name, phone, email }) => {
   return (
     <CardContainer>
+
         <NameField>{name}</NameField>
+
         <AddressContainer>
+            
             <AdressField>
-                <IconHolder><IconPhone src = {phoneIcon} alt = 'Phone Icon'/></IconHolder>
+                <IconHolder>
+                    <IconPhone src = {phoneIcon} alt = 'Phone Icon'/>
+                </IconHolder>
                 <AdressText>{phone}</AdressText>
             </AdressField>
+
             <AdressField>
-            <IconHolder><IconEmail src = {emailIcon} alt = 'Email Icon'/></IconHolder>
+                <IconHolder>
+                    <IconEmail src = {emailIcon} alt = 'Email Icon'/>
+                </IconHolder>
                 <AdressText>{email}</AdressText>
             </AdressField>
+
         </AddressContainer>
+
     </CardContainer>
   );
 };

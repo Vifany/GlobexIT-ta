@@ -1,6 +1,8 @@
 body, html {
   font-family: Proxima Nova, Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
   font-weight: normal;
+  --dark-text-color: #262c40;
+  --pale-text-color: #8189a2;
 }
 
 div {
