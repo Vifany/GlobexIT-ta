@@ -10,7 +10,6 @@ interface CardProps {
 }
 
 const CardContainer = styled.div`
-    background-color:#ffffff;
     height:290px;
     width:333px;
     filter:drop-shadow(0px 0px 20px rgba(0,0,0,0.1));
@@ -32,7 +31,6 @@ const NameField = styled.div`
 `;
 
 const AddressContainer = styled.div`
-    background-color:#ffffff;
     height:60px;
     width:162px;
     padding:0px;
@@ -52,7 +50,7 @@ const AdressText = styled.div`
     text-align:center;
     vertical-align: middle;
     font-size:14px;
-    line-height:24px;
+    line-height:30px;
     border-style:hidden;
     outline:none;
     width:max-content;
@@ -64,8 +62,8 @@ const IconHolder = styled.div`
     display:flex;
     align-content: center;
     justify-content: center;    
-    width:24px;
-    height:24px;
+    width:30px;
+    height:30px;
     border-style:hidden;
     outline:none;
 `
