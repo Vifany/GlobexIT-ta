@@ -30,9 +30,15 @@ const SearchInput = styled.input`
 `;
 
 const SearchField: React.FC <SearchFieldProps> = ({onChange, onButtonClick}) => {
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            onButtonClick();
+        }
+      };
+    
     return (
         <SearchContainer>
-            <SearchInput placeholder = 'Поиск...' onChange ={onChange}/>
+            <SearchInput onKeyDown={handleKeyPress} placeholder = 'Поиск...' onChange ={onChange}/>
             <SearchButton onClick={onButtonClick}/>
         </SearchContainer>
     )

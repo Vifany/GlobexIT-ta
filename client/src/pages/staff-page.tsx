@@ -6,7 +6,8 @@ import StaffCard from '../components/staff-card/staff-card';
 import Employee from '../types/employee';
 import useDisplayStore from '../utils/displayStore';
 import useEmployeeStore from '../utils/employeeStore';
-
+import useSearchStore from '../utils/searchStore';
+import { useEffect } from 'react';
 
 const Backdrop = styled.div`
     position: fixed;
@@ -14,7 +15,7 @@ const Backdrop = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(188, 195, 208, 0.5);
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -29,8 +30,7 @@ const BackdropDiv = styled.div`
     width: 100%;
     height: 100%;
     background: transparent;
-
-`
+`;
 
 const FoundationDiv = styled.div`
     padding-top: 64px;
@@ -39,7 +39,7 @@ const FoundationDiv = styled.div`
     align-items:center;
     height:100%;
     width:100%;
-    `;
+`;
 
 const StickyDiv = styled.div`
     position:sticky;
@@ -47,7 +47,7 @@ const StickyDiv = styled.div`
     z-index:500;
     background: transparent;
     width:100%;
-    `;
+`;
 
 const StaffPageContainer = styled.div`
     display:flex;
@@ -55,7 +55,7 @@ const StaffPageContainer = styled.div`
     flex-direction:column;
     align-content:center;
     background: transparent;
-    `;
+`;
 
 const CardGrid = styled.div`
     margin-top: 32px;
@@ -63,22 +63,41 @@ const CardGrid = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(357px, 1fr));
     gap: 24px;
     width: 100%;
-    
-    `;
+`;
 
-interface StaffPageProps {
-    staffData: Employee[];
-}
 
-const StaffPage: React.FC<StaffPageProps> = ({staffData}) => {
+const StaffPage: React.FC = () => {
     const {employee, isPopupOpen, openPopup, closePopup} = useDisplayStore();
+    const {search, setSearch} = useSearchStore();
+    const {employees, loading, error, fetchEmployees} = useEmployeeStore();
 
+    useEffect(() => {
+        fetchEmployees(search)
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value);
+    };
+    const handleSearchButtonClick = () => {
+        fetchEmployees(search);
+        setSearch(null);
+    };
     const handleBackdropClick = () => {
-        closePopup(); // Call the closePopup function
-      };
+        closePopup();
+    };
     const handleCardClick = (employee: Employee) => {
-        openPopup(employee); // Call the openPopup function with the clicked employee as argument
-      };
+        openPopup(employee);
+    };
+
     return (
     <FoundationDiv>
         <StaffPageContainer>
@@ -90,10 +109,10 @@ const StaffPage: React.FC<StaffPageProps> = ({staffData}) => {
             </Backdrop>
             )}
             <StickyDiv>
-                <SearchField onChange = {() => {}} onButtonClick = {() => {}}/>
+                <SearchField onChange = {handleSearchChange} onButtonClick = {handleSearchButtonClick}/>
             </StickyDiv>
             <CardGrid>
-                {staffData.map((staff, index) => {
+                {employees.map((staff, index) => {
                     return <StaffCard key = {index} staffData = {staff} onClick = {() => handleCardClick(staff)} />
                 })}
             </CardGrid>
