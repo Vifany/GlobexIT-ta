@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import phoneIcon from '../../assets/phone.png';
 import emailIcon from '../../assets/email.png';
-
+import Employee from '../../types/employee';
 interface CardProps {
-  name: string;
-  phone: string;
-  email: string;
+    staffData:Employee,
+    onClick?: () => void;
 }
 
 const CardContainer = styled.div`
@@ -17,6 +16,7 @@ const CardContainer = styled.div`
     padding:24px;
     display:flex;
     flex-direction:column;
+    justify-self: center;
 `;
 
 const NameField = styled.div`
@@ -48,7 +48,6 @@ const AdressField = styled.div`
 const AdressText = styled.div`
     color:var(--pale-text-color);
     text-align:center;
-    vertical-align: middle;
     font-size:14px;
     line-height:24px;
     width:max-content;
@@ -72,9 +71,10 @@ const IconEmail = styled.img`
     max-height: 14px;
 `
 
-const StaffCard: React.FC<CardProps> = ({ name, phone, email }) => {
+const StaffCard: React.FC<CardProps> = ({ staffData, onClick }) => {
+    const {name, phone, email} = staffData;
   return (
-    <CardContainer>
+    <CardContainer onClick={onClick}>
 
         <NameField>{name}</NameField>
 

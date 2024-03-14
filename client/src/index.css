@@ -3,6 +3,7 @@ body, html {
   font-weight: normal;
   --dark-text-color: #262c40;
   --pale-text-color: #8189a2;
+  background-color: white;
 }
 
 div {

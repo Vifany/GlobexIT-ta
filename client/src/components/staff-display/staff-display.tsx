@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CloseButton from '../elements/close-button/close-button';
 import RowComp from '../elements/row-comp/row-comp';
+import Employee  from '../../types/employee';
 
 const InfoTable = styled.div`
     display:table;
@@ -15,7 +16,9 @@ const PopupContainer = styled.div`
     display:flex;
     flex-direction:column;
     gap:40px;
+    z-index:2000;
 `;
+
 const HeaderContainer = styled.div`
     height:30px;
     width:100%;
@@ -30,7 +33,6 @@ const NameField = styled.div`
     font-size:24px;
     font-weight:bold;
     `;
-
 
 const AddsContainer = styled.div`
     gap: 12px;
@@ -52,16 +54,8 @@ const AddsName = styled.div`
 `;
 
 interface PopupProps {
-    data:{
-    name: string;
-    phone: string;
-    email: string;
-    address: string;
-    positionName: string;
-    department: string;
-    hireDate: string;
-    };
-    onClick?: () => void;
+    data: Employee;
+    onButtonClick?: () => void;
 }
 
 const StaffDisplay: React.FC<PopupProps> = ({
@@ -70,19 +64,19 @@ const StaffDisplay: React.FC<PopupProps> = ({
         phone, 
         email, 
         address, 
-        positionName, 
+        position_name, 
         department, 
-        hireDate},
-    onClick
+        hire_date},
+        onButtonClick
 }) => {
     const tableData = [
         {val: phone,
         field: 'Телефон'}, 
         {val: email,
         field: 'Почта'}, 
-        {val: positionName,
+        {val: position_name,
         field: 'Должность'}, 
-        {val: hireDate,
+        {val: hire_date,
         field: 'Дата приема'},
         {val: department,
         field: 'Подразеделение'}
@@ -95,7 +89,7 @@ const StaffDisplay: React.FC<PopupProps> = ({
                 <NameField>
                 {name}
                 </NameField>
-                <CloseButton onClick ={onClick}/>
+                <CloseButton onClick ={onButtonClick}/>
             </HeaderContainer>
 
             <InfoTable>
