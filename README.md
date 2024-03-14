@@ -6,6 +6,12 @@
 >Список юзеров получаем с бэкенда. Для этого нужно установить  и запустить локально сервер. 
 
 
+Использованные технологии:
+- ![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+- ![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+- ![image](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+- 🐻zustand
+
 Лежит в директори client.
 
 запуск:
